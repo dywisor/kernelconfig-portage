@@ -1,0 +1,13 @@
+diff --git a/Puma/src/compile.mk b/Puma/src/compile.mk
+index 35e0004..7025b20 100644
+--- a/Puma/src/compile.mk
++++ b/Puma/src/compile.mk
+@@ -82,7 +82,7 @@ $(OBJDIR)/%.o : %.c
+ $(DEPDIR)/%.d : %.cc
+ 	@echo "Generating dependencies for $(notdir $<)..."
+ 	@$(CXX) $(CPPFLAGS) -MM $(filter %.cc,$^) | \
+-	sed -e "s@$(*F)\.o@$(OBJDIR)/& $(DEPDIR)/$(*F).d@g" > $@
++	sed -e "s@$(subst @,\@,$(*F)\.o)@$(subst @,\@,$(OBJDIR)/& $(DEPDIR)/$(*F).d)@g" > $@
+ 
+ 
+ .PHONY: all showinfo
