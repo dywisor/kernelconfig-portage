@@ -1,0 +1,5 @@
+# André Erdmann <dywi@mailerd.de> (20 May 2016)
+# Masked for poor ebuild quality,
+# had to resort to install most files to /opt.
+# Use sys-kernel/satyr if that is sufficient.
+dev-cpp/undertaker

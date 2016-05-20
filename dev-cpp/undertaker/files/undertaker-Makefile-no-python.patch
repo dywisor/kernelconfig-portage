@@ -1,0 +1,58 @@
+diff --git a/Makefile b/Makefile
+index 4ea1c46..d7396d7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -102,11 +102,9 @@ conf: scripts/kconfig/conf
+ clean:
+ 	$(MAKE) -C undertaker clean
+ 	$(MAKE) -C ziz clean
+-	$(MAKE) -C python clean
+ 	$(MAKE) -C tailor clean
+ 	$(MAKE) -C fm clean
+ 	rm -rf doc/*.gz
+-	@python setup.py clean
+ 
+ distclean: clean
+ 	$(MAKE) -C undertaker clean-parsers
+@@ -120,7 +118,7 @@ models: picosat/libpicosat.a
+ ###################################################################################################
+ # check targets
+ 
+-CHECK_TARGETS = check-undertaker check-ziz check-python check-tailor check-fm
++CHECK_TARGETS = check-undertaker check-ziz check-tailor check-fm
+ 
+ check: all
+ 	$(MAKE) real_check
+@@ -133,9 +131,6 @@ check-undertaker:
+ check-ziz:
+ 	$(MAKE) -C ziz check
+ 
+-check-python:
+-	$(MAKE) -C python check
+-
+ check-tailor:
+ 	$(MAKE) -C tailor check
+ 
+@@ -156,12 +151,6 @@ install: all $(MANPAGES)
+ 	@install -d -v $(DESTDIR)$(DOCDIR)/undertaker/tailor
+ 	@install -d -v $(DESTDIR)$(MANDIR)/man1
+ 
+-	@install -v python/undertaker-calc-coverage $(DESTDIR)$(BINDIR)
+-	@install -v python/undertaker-kconfigdump $(DESTDIR)$(BINDIR)
+-	@install -v python/undertaker-checkpatch $(DESTDIR)$(BINDIR)
+-	@install -v python/vampyr-spatch-wrapper $(DESTDIR)$(BINDIR)
+-	@install -v python/fakecc $(DESTDIR)$(BINDIR)
+-
+ 	@install -v scripts/kconfig/dumpconf $(DESTDIR)$(LIBDIR)/undertaker
+ 
+ 	@install -v tailor/undertaker-tailor $(DESTDIR)$(BINDIR)
+@@ -195,9 +184,6 @@ install: all $(MANPAGES)
+ 
+ 	@install -v -m 0644 -t $(DESTDIR)$(MANDIR)/man1 $(MANPAGES)
+ 
+-	@python setup.py build $(SETUP_PY_BUILD_EXTRA_ARG)
+-	@python setup.py install --prefix=$(PREFIX) $(SETUP_PY_INSTALL_EXTRA_ARG)
+-
+ dist: clean
+ 	tar -czvf ../undertaker-$(VERSION).tar.gz . \
+ 		--show-transformed-names \

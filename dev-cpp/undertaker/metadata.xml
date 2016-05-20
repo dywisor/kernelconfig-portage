@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<!--<herd>no-herd</herd>-->
+	<maintainer>
+		<email>dywi@mailerd.de</email>
+		<name>Andre Erdmann</name>
+	</maintainer>
+	<longdescription>
+	The CADOS / VAMOS project
+
+	Topic of the project is variability of system software evoked by the
+	non-functional properties of operating-system functions,
+	which emerges from
+	(a) different implementations of the same system function to make
+	an appearance of certain non-functional properties and
+	(b) the using level of those implementations
+	in order to compensate for effects of these properties.
+
+	With this project, the undertaker, we provide tools to examine and evaluate
+	CPP based source files. See ​VAMOS or ​CADOS for more information.
+	</longdescription>
+</pkgmetadata>
