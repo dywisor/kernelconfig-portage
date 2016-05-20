@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<!--<herd>no-herd</herd>-->
+	<maintainer>
+		<email>dywi@mailerd.de</email>
+		<name>Andre Erdmann</name>
+	</maintainer>
+	<use lang="en">
+		<flag name='system-picosat'>
+			Instead of using the bundled picosat library, rely on <pkg>dev-libs/picosat</pkg>.
+			If this flag is not set, then a picosat binary named satyr-picosat
+			will be installed.
+		</flag>
+	</use>
+</pkgmetadata>

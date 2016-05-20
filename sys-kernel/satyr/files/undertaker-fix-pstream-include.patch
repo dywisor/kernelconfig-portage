@@ -1,0 +1,13 @@
+diff --git a/undertaker/SatChecker.cpp b/undertaker/SatChecker.cpp
+index 7c0c32f..856e52b 100644
+--- a/undertaker/SatChecker.cpp
++++ b/undertaker/SatChecker.cpp
+@@ -38,7 +38,7 @@
+ 
+ #include <Puma/TokenStream.h>
+ #include <boost/regex.hpp>
+-#include <pstreams/pstream.h>
++#include <pstream.h>
+ 
+ #include <map>
+ #include <ostream>

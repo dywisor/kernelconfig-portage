@@ -1,0 +1,64 @@
+diff --git a/undertaker/Makefile b/undertaker/Makefile
+index e39c033..eb94af1 100644
+--- a/undertaker/Makefile
++++ b/undertaker/Makefile
+@@ -5,7 +5,7 @@ SUFFIXES += .d
+ NODEPS:=clean clean-check clean-parsers clean-regenerate
+ 
+ CFLAGS = -Wall -Wextra -O2
+-CPPFLAGS = -I../scripts/kconfig -I../picosat
++CPPFLAGS = -I../scripts/kconfig
+ CXXFLAGS = $(CFLAGS) -std=gnu++11
+ 
+ # use g++ for linking, will automaticly use "-lstdc++ -lm" libraries
+@@ -41,6 +41,16 @@ ifdef STATIC
+ endif
+ 
+ ###################################################################################################
++# bundled picosat
++LOCALPICOSAT = ../picosat
++ifneq ($(LOCALPICOSAT),)
++CPPFLAGS +=  -I$(LOCALPICOSAT)
++PICOSATLIB = $(LOCALPICOSAT)/libpicosat.a
++else
++LDLIBS += -lpicosat
++endif
++
++###################################################################################################
+ # local Puma
+ 
+ ifneq ($(LOCALPUMA),)
+@@ -86,18 +96,20 @@ endif
+ 
+ all: $(PROGS)
+ 
+-undertaker: libparser.a ../picosat/libpicosat.a $(PUMALIB)
+-rsf2cnf: libparser.a ../picosat/libpicosat.a
++undertaker: libparser.a $(PICOSATLIB) $(PUMALIB)
++rsf2cnf: libparser.a $(PICOSATLIB)
+ predator: predator.o PredatorVisitor.o $(PUMALIB)
+-satyr: libsatyr.a zconf.tab.o ../picosat/libpicosat.a
++satyr: libsatyr.a zconf.tab.o $(PICOSATLIB)
+ 
+ ifneq ($(LOCALPUMA),)
+ $(PUMALIB):
+ 	$(MAKE) -C $(LOCALPUMA) compile
+ endif
+ 
+-../picosat/libpicosat.a:
++ifneq ($(LOCALPICOSAT),)
++$(PICOSATLIB):
+ 	$(MAKE) -C .. picosat/libpicosat.a
++endif
+ 
+ ../version.h:
+ 	$(MAKE) -C .. version.h
+@@ -140,7 +152,7 @@ endif
+ %.d: %.cpp
+ 	 @$(CXX) $(CPPFLAGS) $(CXXFLAGS) -MM -MG $< > $@
+ 
+-test-%: test-%.cpp libparser.a ../picosat/libpicosat.a $(PUMALIB)
++test-%: test-%.cpp libparser.a $(PICOSATLIB) $(PUMALIB)
+ 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -g -O0 -o $@ $^ -lcheck -lrt -lsubunit $(LDFLAGS) $(LDLIBS)
+ 
+ clean: clean-check
