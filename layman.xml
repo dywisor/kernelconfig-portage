@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name><![CDATA[kernelconfig]]></name>
+    <description lang="en"><![CDATA[kernelconfig Gentoo Overlay]]></description>
+    <homepage>https://github.com/dywisor/kernelconfig</homepage>
+    <owner type="person">
+      <name><![CDATA[dywisor]]></name>
+      <email>dywi@mailerd.de</email>
+    </owner>
+    <source type="git">git://github.com/dywisor/kernelconfig-portage.git</source>
+    <source type="git">https://github.com/dywisor/kernelconfig-portage.git</source>
+    <feed>https://github.com/dywisor/kernelconfig-portage/commits/master.atom</feed>
+  </repo>
+</repositories>
