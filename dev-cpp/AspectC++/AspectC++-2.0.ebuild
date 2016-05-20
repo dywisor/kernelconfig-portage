@@ -19,7 +19,6 @@ KEYWORDS=""
 _CDEPEND="
 	dev-libs/libxml2 sys-libs/ncurses:= sys-libs/zlib"
 DEPEND="${_CDEPEND}
-	dev-libs/libedit
 	|| ( sys-devel/clang:0/3.7 sys-devel/clang:0/3.6 sys-devel/clang:0/3.4 )
 "
 RDEPEND="${_CDEPEND}"
