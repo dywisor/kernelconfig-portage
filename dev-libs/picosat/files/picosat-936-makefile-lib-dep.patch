@@ -1,0 +1,24 @@
+diff --git a/makefile.in b/makefile.in
+index 8c8f222..a2ce759 100644
+--- a/makefile.in
++++ b/makefile.in
+@@ -1,5 +1,6 @@
+ CC=@CC@
+ CFLAGS=@CFLAGS@
++LIB=libpicosat.a
+ 
+ all: @TARGETS@
+ 
+@@ -8,10 +9,10 @@ clean:
+ 	rm -f makefile config.h
+ 	rm -f gmon.out *~ 
+ 
+-picosat: libpicosat.a app.o main.o
++picosat: $(LIB) app.o main.o
+ 	$(CC) $(CFLAGS) -o $@ main.o app.o -L. -lpicosat
+ 
+-picomus: libpicosat.a picomus.o
++picomus: $(LIB) picomus.o
+ 	$(CC) $(CFLAGS) -o $@ picomus.o -L. -lpicosat
+ 
+ app.o: app.c picosat.h makefile

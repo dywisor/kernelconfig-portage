@@ -1,0 +1,32 @@
+diff --git a/makefile.in b/makefile.in
+index 8e0e740..eff5de0 100644
+--- a/makefile.in
++++ b/makefile.in
+@@ -1,5 +1,6 @@
+ CC=@CC@
+ CFLAGS=@CFLAGS@
++LIB=libpicosat.a
+ 
+ all: @TARGETS@
+ 
+@@ -12,16 +13,16 @@ clean:
+ analyze:
+ 	clang --analyze $(CFLAGS) *.c *.h
+ 
+-picosat: libpicosat.a app.o main.o
++picosat: $(LIB) app.o main.o
+ 	$(CC) $(CFLAGS) -o $@ main.o app.o -L. -lpicosat
+ 
+-picomcs: libpicosat.a picomcs.o
++picomcs: $(LIB) picomcs.o
+ 	$(CC) $(CFLAGS) -o $@ picomcs.o -L. -lpicosat
+ 
+-picomus: libpicosat.a picomus.o
++picomus: $(LIB) picomus.o
+ 	$(CC) $(CFLAGS) -o $@ picomus.o -L. -lpicosat
+ 
+-picogcnf: libpicosat.a picogcnf.o
++picogcnf: $(LIB) picogcnf.o
+ 	$(CC) $(CFLAGS) -o $@ picogcnf.o -L. -lpicosat
+ 
+ app.o: app.c picosat.h makefile
