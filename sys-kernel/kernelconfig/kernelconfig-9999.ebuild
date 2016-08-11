@@ -11,7 +11,7 @@ EGIT_REPO_URI="git://github.com/dywisor/kernelconfig.git
 
 DOCS=( doc/rst/{userguide,devguide}.rst )
 
-inherit git-2 distutils-r1
+inherit git-2 distutils-r1 bash-completion-r1
 
 DESCRIPTION="Automated creation of kernel configuration files"
 HOMEPAGE="https://github.com/dywisor/kernelconfig"
@@ -50,4 +50,5 @@ python_install_all() {
 	distutils-r1_python_install_all
 
 	emake "${KERNELCONFIG_MAKEARGS[@]}" DESTDIR="${D}" install-{config,data}
+	newbashcomp "files/${PN}.bashcomp" "${PN}"
 }
