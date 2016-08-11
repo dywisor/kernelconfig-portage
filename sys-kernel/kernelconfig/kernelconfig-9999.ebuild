@@ -11,7 +11,7 @@ EGIT_REPO_URI="git://github.com/dywisor/kernelconfig.git
 
 DOCS=( doc/rst/{userguide,devguide}.rst )
 
-inherit git-2 distutils-r1 linux-info
+inherit git-2 distutils-r1
 
 DESCRIPTION="Automated creation of kernel configuration files"
 HOMEPAGE="https://github.com/dywisor/kernelconfig"
