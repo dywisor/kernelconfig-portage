@@ -33,10 +33,6 @@ RDEPEND="
 	dev-python/lxml[${PYTHON_USEDEP}]
 	dev-vcs/git"
 
-src_unpack() {
-	git-2_src_unpack
-}
-
 pkg_setup() {
 	declare -ga KERNELCONFIG_MAKEARGS=(
 		PREFIX="/usr"
