@@ -8,4 +8,12 @@
     <upstream>
         <remote-id type="github">dywisor/kernelconfig</remote-id>
     </upstream>
+    <use lang="en">
+        <flag name='html'>
+            Generate documentation in HTML format
+        </flag>
+        <flag name='doc-pdf'>
+            Generate documentation in PDF format
+        </flag>
+    </use>
 </pkgmetadata>

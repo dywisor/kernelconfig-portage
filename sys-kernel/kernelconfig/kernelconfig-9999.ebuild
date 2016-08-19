@@ -9,8 +9,6 @@ PYTHON_COMPAT=( python{3_3,3_4,3_5} )
 EGIT_REPO_URI="git://github.com/dywisor/kernelconfig.git
 	https://github.com/dywisor/kernelconfig.git"
 
-DOCS=( doc/rst/{userguide,devguide}.rst )
-
 inherit git-2 distutils-r1 bash-completion-r1
 
 DESCRIPTION="Automated creation of kernel configuration files"
@@ -20,9 +18,9 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="html doc-pdf"
 
-DEPEND=""
+DEPEND="html? ( dev-python/docutils ) doc-pdf? ( dev-python/rst2pdf )"
 RDEPEND="
 	virtual/python-enum34[${PYTHON_USEDEP}]
 	dev-python/ply[${PYTHON_USEDEP}]
@@ -40,6 +38,17 @@ pkg_setup() {
 		LOCALSTATEDIR="/var"
 	)
 	declare -gx LKCONFIG_LKC="src/lkc-bundled"
+
+	declare -ga DOCS=()
+	declare -ga HTML_DOCS=()
+
+	if use doc-pdf; then
+		DOCS+=( doc/pdf/{userguide,devguide}.pdf )
+	fi
+
+	# .html doc files are always installed,
+	# the USE flag controls whether they are rebuilt during src_compile()
+	HTML_DOCS+=( doc/html/{userguide,devguide}.html )
 }
 
 python_configure() {
@@ -47,7 +56,10 @@ python_configure() {
 }
 
 python_compile_all() {
-	emake "${KERNELCONFIG_MAKEARGS[@]}" bashcomp
+	emake "${KERNELCONFIG_MAKEARGS[@]}" \
+		bashcomp \
+		$(usex html htmldoc "") \
+		$(usex doc-pdf pdfdoc "")
 }
 
 python_install_all() {
