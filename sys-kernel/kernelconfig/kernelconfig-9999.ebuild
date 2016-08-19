@@ -46,9 +46,13 @@ python_configure() {
 	emake "${KERNELCONFIG_MAKEARGS[@]}" prepare-installinfo
 }
 
+python_compile_all() {
+	emake "${KERNELCONFIG_MAKEARGS[@]}" bashcomp
+}
+
 python_install_all() {
 	distutils-r1_python_install_all
 
 	emake "${KERNELCONFIG_MAKEARGS[@]}" DESTDIR="${D}" install-{config,data}
-	newbashcomp "files/${PN}.bashcomp" "${PN}"
+	newbashcomp "build/${PN}.bashcomp" "${PN}"
 }
