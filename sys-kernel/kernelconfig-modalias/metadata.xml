@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>dywi@mailerd.de</email>
+        <name>Andre Erdmann</name>
+    </maintainer>
+    <upstream>
+        <remote-id type="github">dywisor/kernelconfig</remote-id>
+    </upstream>
+    <use lang="en">
+        <flag name='defconfig'>
+            Build with defconfig instead of allmodconfig (for quick testing)
+        </flag>
+    </use>
+</pkgmetadata>

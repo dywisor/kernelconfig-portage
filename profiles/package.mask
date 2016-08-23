@@ -1,0 +1,8 @@
+# André Erdmann <dywi@mailerd.de> (23 Aug 2016)
+# Demo ebuild for creating modalias info files,
+# as alternative to "kernelconfig --generate-modalias".
+#
+# Repurposes kernel-2.eclass for an unsupported use case
+# and is therefore masked.
+sys-kernel/kernelconfig-modalias
+
