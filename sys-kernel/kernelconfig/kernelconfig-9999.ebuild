@@ -18,9 +18,12 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="html doc-pdf"
+IUSE="doc-pdf html +man html"
 
-DEPEND="html? ( dev-python/docutils ) doc-pdf? ( dev-python/rst2pdf )"
+DEPEND="
+	man? ( dev-python/docutils )
+	html? ( dev-python/docutils )
+	doc-pdf? ( dev-python/rst2pdf )"
 RDEPEND="
 	virtual/python-enum34[${PYTHON_USEDEP}]
 	dev-python/ply[${PYTHON_USEDEP}]
@@ -58,6 +61,7 @@ python_configure() {
 python_compile_all() {
 	emake "${KERNELCONFIG_MAKEARGS[@]}" \
 		bashcomp \
+		$(usex man man "") \
 		$(usex html htmldoc "") \
 		$(usex doc-pdf pdfdoc "")
 }
@@ -67,4 +71,6 @@ python_install_all() {
 
 	emake "${KERNELCONFIG_MAKEARGS[@]}" DESTDIR="${D}" install-{config,data}
 	newbashcomp "build/${PN}.bashcomp" "${PN}"
+
+	! use man || doman "./doc/man/${PN}"*.[0-9]
 }

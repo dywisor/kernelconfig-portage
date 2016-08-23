@@ -15,5 +15,8 @@
         <flag name='doc-pdf'>
             Generate documentation in PDF format
         </flag>
+        <flag name='man'>
+            Generate man pages
+        </flag>
     </use>
 </pkgmetadata>
